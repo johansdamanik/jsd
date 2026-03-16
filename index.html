@@ -18,6 +18,7 @@
     content="full-stack developer, web developer, software engineer, Vue.js, Laravel, React, Node.js, e-commerce, portfolio, Simeon, Johan Simeon Damanik"
   />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://simeon.id/" />
 
   <!-- Open Graph / Facebook -->
@@ -28,6 +29,8 @@
     property="og:description"
     content="Full-stack developer building reliable systems for real products. Specializing in e-commerce platforms, internal tools, and operational software."
   />
+  <meta property="og:image" content="https://simeon.id/icon.png" />
+  <meta property="og:image:alt" content="Simeon developer portfolio icon" />
   <meta property="og:site_name" content="Simeon - Developer Portfolio" />
   <meta property="og:locale" content="en_US" />
 
@@ -38,6 +41,8 @@
     name="twitter:description"
     content="Full-stack developer building reliable systems for real products. Explore skills, projects, and experience."
   />
+  <meta name="twitter:image" content="https://simeon.id/icon.png" />
+  <meta name="twitter:image:alt" content="Simeon developer portfolio icon" />
 
   <!-- Theme -->
   <meta name="theme-color" content="#12101f" />
@@ -55,24 +60,40 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Johan Simeon Damanik",
-      "alternateName": "Simeon",
-      "url": "https://simeon.id",
-      "jobTitle": "Full-Stack Developer",
-      "description": "Full-stack developer who builds reliable systems for real products - from e-commerce platforms and internal tools to operational software.",
-      "email": "johansdamanik@gmail.com",
-      "sameAs": [
-        "https://github.com/johansdamanik",
-        "https://www.linkedin.com/in/johan-simeon-damanik-a2a6a0253/"
-      ],
-      "knowsAbout": [
-        "JavaScript", "TypeScript", "PHP",
-        "Vue.js", "React.js", "Next.js", "Nuxt",
-        "Laravel", "Node.js", "NestJS", "Express.js",
-        "PostgreSQL", "MySQL", "MongoDB", "Redis",
-        "Docker", "AWS", "Firebase",
-        "REST API", "GraphQL"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://simeon.id/#person",
+          "name": "Johan Simeon Damanik",
+          "alternateName": "Simeon",
+          "url": "https://simeon.id/",
+          "jobTitle": "Full-Stack Developer",
+          "description": "Full-stack developer who builds reliable systems for real products - from e-commerce platforms and internal tools to operational software.",
+          "email": "johansdamanik@gmail.com",
+          "sameAs": [
+            "https://github.com/johansdamanik",
+            "https://www.linkedin.com/in/johan-simeon-damanik-a2a6a0253/"
+          ],
+          "knowsAbout": [
+            "JavaScript", "TypeScript", "PHP",
+            "Vue.js", "React.js", "Next.js", "Nuxt",
+            "Laravel", "Node.js", "NestJS", "Express.js",
+            "PostgreSQL", "MySQL", "MongoDB", "Redis",
+            "Docker", "AWS", "Firebase",
+            "REST API", "GraphQL"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://simeon.id/#website",
+          "url": "https://simeon.id/",
+          "name": "Simeon",
+          "description": "Portfolio website of Johan Simeon Damanik, branded publicly as Simeon.",
+          "publisher": {
+            "@id": "https://simeon.id/#person"
+          },
+          "inLanguage": "en"
+        }
       ]
     }
   </script>

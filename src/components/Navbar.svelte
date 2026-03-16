@@ -85,11 +85,11 @@
   .navbar-inner {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 4px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 56px;
+    min-height: 64px;
   }
 
   .navbar-brand {
@@ -103,7 +103,16 @@
   }
 
   .brand-icon {
-    width: 24px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .brand-icon img {
+    display: block;
+    width: 56px;
+    height: auto;
+    image-rendering: pixelated;
   }
 
   .brand-text {
@@ -171,7 +180,7 @@
     .navbar-menu {
       display: none;
       position: absolute;
-      top: 56px;
+      top: 100%;
       left: 0;
       right: 0;
       background: #1a1831;
@@ -189,6 +198,10 @@
       padding: 12px 16px;
       width: 100%;
       text-align: left;
+    }
+
+    .brand-icon img {
+      width: 48px;
     }
   }
 </style>

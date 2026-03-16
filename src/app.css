@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap');
-@import "tailwindcss";
 
 /* ============================================
    RPG FANTASY DESIGN SYSTEM
    32-bit RPG Developer Portfolio — Simeon
    ============================================ */
 
-@theme {
+:root {
   /* --- Background & Dungeon --- */
   --color-dungeon: #12101f;
   --color-dungeon-light: #1a1831;

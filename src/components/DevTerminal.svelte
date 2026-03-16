@@ -6,10 +6,10 @@
 
   let inputValue = $state('');
   let lines = $state<TerminalLine[]>([
-    { type: 'system', text: '╔══════════════════════════════════════════╗' },
-    { type: 'system', text: '║   SIMEON\'S DEVELOPER TERMINAL v1.0       ║' },
-    { type: 'system', text: '║   Type "help" for available commands     ║' },
-    { type: 'system', text: '╚══════════════════════════════════════════╝' },
+    { type: 'system', text: '╔═════════════════════════════╗' },
+    { type: 'system', text: '║   SIMEON\'S DEVELOPER TERMINAL v1.0                 ║' },
+    { type: 'system', text: '║   Type "help" for available commands                ║' },
+    { type: 'system', text: '╚═════════════════════════════╝' },
     { type: 'output', text: '' },
   ]);
 

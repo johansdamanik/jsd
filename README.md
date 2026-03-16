@@ -81,15 +81,6 @@ npm run build
 
 ---
 
-## 📸 Interface Preview
-
-*(If you fork this, you can add screenshots of your interface here!)*
-
-- **Desktop View:** Features a central layout with intricate panel borders and particle effects.
-- **Mobile View:** Gracefully degrades into a touch-optimized stacked layout with detail overlays.
-
----
-
 ## ✉️ Contact
 
 - **Email:** [johansdamanik@gmail.com](mailto:johansdamanik@gmail.com)

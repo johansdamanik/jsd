@@ -70,7 +70,7 @@ Johan is a **Systems & Automation Engineer** focused on building structured solu
 
 **Key Expertise:**
 - System Design & Architecture
-- Full-Stack Development (Laravel, Svelte, React, Node.js)
+- Full-Stack Development (Laravel, Nuxt, Svelte, React, Node.js)
 - Automation & Workflow Engineering (n8n, OpenClaw)
 - Global Payment Integrations (PayPal, Xendit, Midtrans)
 

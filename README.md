@@ -1,88 +1,86 @@
-<div align="center">
-  <img src="public/icon.png" alt="Simeon Logo" width="120" />
-  <h1>⚔️ Simeon — Full-Stack Developer</h1>
-  <p><strong>A 32-bit RPG-Inspired Interactive Developer Portfolio</strong></p>
-  
-  <p>
-    <a href="#features">Features</a> •
-    <a href="#tech-stack">Tech Stack</a> •
-    <a href="#getting-started">Getting Started</a> •
-    <a href="#contact">Contact</a>
-  </p>
-</div>
+# Johan Simeon — Neumorphic Software Portfolio
+
+A premium, highly-interactive personal portfolio built with **SvelteKit**, **Svelte 5 Runes**, and **Tailwind CSS v4**. This project implements a sophisticated **Neumorphism (Soft UI)** design system, focusing on physical depth, tactile interactive states, and high-performance animations.
+
+> [!IMPORTANT]
+> **Core Message**: "I design and build systems that reduce operational friction — from internal platforms to automation workflows — structured to scale and remain maintainable over time."
 
 ---
 
-## 🌟 The Concept
+## ✨ Features
 
-This is not a traditional "about me" website. It is a **gamified developer profile** designed to feel like browsing a classic 32-bit RPG game interface. 
-
-The core message of this portfolio is **Capability & Systems Thinking**. It demonstrates the ability to build practical, real-world full-stack systems — from e-commerce platforms and internal tools to reliable operational software.
-
-> *"I build reliable systems for real products. I help businesses turn operational complexity into maintainable full-stack software."*
-
----
-
-## 🎮 Key Features
-
-- **🛡️ Character Status (Hero):** RPG-style stat bars (HP, MP, EXP) and quick social actions.
-- **🎒 Skills Inventory:** A horizontally scrollable, touch-friendly grid categorizing tech stacks (Frontend, Backend, DB & Infra, Automation) with an **Item Rarity System** (Common to Legendary).
-- **⭐ Quest Board (Projects):** Projects presented as "Missions" complete with ranks, objectives, and equipped tech stacks.
-- **💻 Developer Terminal:** A fully functional, retro-styled command-line interface `(cmd: help, skills, contact)`.
-- **📖 Experience Log:** A timeline of professional history formatted as an interactive quest log.
-- **🎨 32-bit Aesthetic:** Custom CSS architecture featuring repeating dungeon tile patterns, gold corner embellishments, layered shadows, pixel fonts, and micro-animations (sparkles, shimmers, floats).
-- **📱 Mobile-First UX:** Fully responsive components, including detailed mobile overlays and scrollable tab systems.
-- **🔎 SEO Optimized:** Complete with Open Graph, Twitter Cards, semantic HTML, ARIA labels, and JSON-LD structured data.
+- 🌓 **Dynamic Neumorphism**: Custom-calibrated shadow tokens (`shadow-neo-extruded`, `shadow-neo-inset`) for a realistic soft-surface feel.
+- 🧊 **Tactile Components**: Buttons, cards, and badges with physical "press" animations and 3D hover states.
+- 🌊 **Liquid Navigation**: A floating pill-shaped navbar with intersection observer integration for seamless section tracking.
+- 🎨 **Modern Tech Stack**: Harnessing the power of Svelte 5 (Runes) and Tailwind CSS 4 for state-of-the-art developer experience.
+- 🚀 **Performance Optimized**: Scoring high on Core Web Vitals with Vercel Speed Insights and Analytics integration.
+- 🔍 **SEO Ready**: Comprehensive JSON-LD structured data, OpenGraph metadata, and automatic sitemap generation.
 
 ---
 
 ## 🛠️ Tech Stack
 
-This project was built focusing on performance, clean architecture, and rapid styling:
+### Frontend
+![Svelte](https://img.shields.io/badge/Svelte_5-FF3E00?style=for-the-badge&logo=svelte&logoColor=white) 
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white) 
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-- **Framework:** [Svelte 5](https://svelte.dev/) (with Runes `$state`)
-- **Styling:** Vanilla CSS (Custom Design System, CSS Variables, Keyframe Animations)
-- **Build Tool:** [Vite](https://vitejs.dev/)
-- **Language:** TypeScript
-- **Typography:** [Pixelify Sans](https://fonts.google.com/specimen/Pixelify+Sans)
+### Observable / Analytics
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) 
+![Analytics](https://img.shields.io/badge/Vercel_Analytics-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+---
+
+## 📂 Project Structure
+
+- `src/lib/components/ui/`: Atomic Neumorphic components (Badge, Button, Card, IconWell, SectionDivider).
+- `src/lib/components/sections/`: Layout organisms (Hero, Philosophy, Navbar, SelectedWork, Capabilities, Contact).
+- `static/`: Brand assets including the custom Neumorphic SVG favicon.
+- `src/app.css`: The "Design System" layer containing the custom Neumorphic theme tokens.
 
 ---
 
 ## 🚀 Getting Started
 
-Want to run this portfolio locally or use it as inspiration?
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/johansdamanik/jsd.git
+   ```
 
-### Prerequisites
-- Node.js (v18+ recommended)
-- npm, yarn, or pnpm
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-### Installation
+3. **Run development server**:
+   ```bash
+   npm run dev
+   ```
 
-1. Clone the repository:
-```bash
-git clone https://github.com/johansdamanik/simeon-portfolio.git
-cd simeon-portfolio
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Build for production:
-```bash
-npm run build
-```
+4. **Build for production**:
+   ```bash
+   npm run build
+   ```
 
 ---
 
-## ✉️ Contact
+## 👨‍💻 About Johan Simeon
 
-- **Email:** [johansdamanik@gmail.com](mailto:johansdamanik@gmail.com)
-- **GitHub:** [@johansdamanik](https://github.com/johansdamanik)
-- **LinkedIn:** [Johan Simeon Damanik](https://www.linkedin.com/in/johan-simeon-damanik-a2a6a0253/)
+Johan is a **Systems & Automation Engineer** focused on building structured solutions for real-world operations. 
+
+**Key Expertise:**
+- System Design & Architecture
+- Full-Stack Development (Laravel, Svelte, React, Node.js)
+- Automation & Workflow Engineering (n8n, OpenClaw)
+- Global Payment Integrations (PayPal, Xendit, Midtrans)
+
+**Connect:**
+- [GitHub](https://github.com/johansdamanik)
+- [LinkedIn](https://www.linkedin.com/in/johan-simeon-damanik-a2a6a0253/)
+- [Portfolio](https://simeon.id)
+
+---
+
+## 📜 License
+
+This project is open-source and available under the MIT License.

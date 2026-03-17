@@ -4,6 +4,7 @@
 
   let isMenuOpen = $state(false);
   let activeSection = $state("");
+  let isNavbarVisible = $state(true);
 
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
@@ -16,6 +17,7 @@
 
   onMount(() => {
     const sections = Array.from(document.querySelectorAll("section[id]"));
+    let lastScrollY = window.scrollY;
 
     const updateActiveSection = () => {
       const markerOffset = window.innerWidth < 768 ? 140 : 160;
@@ -51,6 +53,19 @@
     sections.forEach((section) => observer.observe(section));
 
     const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY;
+
+      if (currentScrollY <= 24) {
+        isNavbarVisible = true;
+      } else if (scrollDelta > 4) {
+        isNavbarVisible = false;
+        isMenuOpen = false;
+      } else if (scrollDelta < -4) {
+        isNavbarVisible = true;
+      }
+
+      lastScrollY = currentScrollY;
       updateActiveSection();
     };
 
@@ -67,7 +82,13 @@
   });
 </script>
 
-<nav class="sticky top-6 z-50 w-full px-4 sm:px-6 lg:px-8 mb-12">
+<nav
+  class={`sticky top-6 z-50 w-full px-4 sm:px-6 lg:px-8 mb-12 transition-all duration-300 ${
+    isNavbarVisible
+      ? "translate-y-0 opacity-100 pointer-events-auto"
+      : "-translate-y-24 opacity-0 pointer-events-none"
+  }`}
+>
   <div
     class="max-w-7xl mx-auto h-20 px-6 sm:px-10 flex items-center justify-between bg-neo-bg/90 backdrop-blur-md rounded-full shadow-neo-extruded border border-white/20"
   >

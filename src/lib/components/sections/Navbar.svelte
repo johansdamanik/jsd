@@ -18,19 +18,28 @@
   onMount(() => {
     const sections = Array.from(document.querySelectorAll("section[id]"));
     let lastScrollY = window.scrollY;
+    let ticking = false;
+    let latestScrollY = window.scrollY;
+    let sectionBounds: Array<{ id: string; top: number; bottom: number }> = [];
 
-    const updateActiveSection = () => {
-      const markerOffset = window.innerWidth < 768 ? 140 : 160;
-      const markerY = window.scrollY + markerOffset;
-      let nextActiveSection = "";
-
-      for (const section of sections) {
+    const recalculateSectionBounds = () => {
+      sectionBounds = sections.map((section) => {
         const el = section as HTMLElement;
         const top = el.offsetTop;
         const bottom = top + el.offsetHeight;
 
-        if (markerY >= top && markerY < bottom) {
-          nextActiveSection = el.id;
+        return { id: el.id, top, bottom };
+      });
+    };
+
+    const updateActiveSection = (scrollY: number) => {
+      const markerOffset = window.innerWidth < 768 ? 140 : 160;
+      const markerY = scrollY + markerOffset;
+      let nextActiveSection = "";
+
+      for (const section of sectionBounds) {
+        if (markerY >= section.top && markerY < section.bottom) {
+          nextActiveSection = section.id;
           break;
         }
       }
@@ -38,22 +47,8 @@
       activeSection = nextActiveSection;
     };
 
-    const observer = new IntersectionObserver(
-      () => {
-        updateActiveSection();
-      },
-      {
-        root: null,
-        rootMargin:
-          window.innerWidth < 768 ? "-20% 0px -60% 0px" : "-35% 0px -45% 0px",
-        threshold: [0.1, 0.2, 0.35, 0.5, 0.7],
-      },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+    const applyScrollState = () => {
+      const currentScrollY = latestScrollY;
       const scrollDelta = currentScrollY - lastScrollY;
 
       if (currentScrollY <= 24) {
@@ -66,18 +61,36 @@
       }
 
       lastScrollY = currentScrollY;
-      updateActiveSection();
+      updateActiveSection(currentScrollY);
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      latestScrollY = window.scrollY;
+
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(applyScrollState);
+      }
+    };
+
+    const handleResize = () => {
+      recalculateSectionBounds();
+      latestScrollY = window.scrollY;
+      applyScrollState();
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("load", handleResize);
 
-    handleScroll();
+    recalculateSectionBounds();
+    handleResize();
 
     return () => {
-      observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("load", handleResize);
     };
   });
 </script>

@@ -134,6 +134,21 @@ a:focus-visible {
   text-align: center;
 }
 
+.profile-image,
+.project-image {
+  display: block;
+  width: min(100%, 20rem);
+  height: auto;
+  margin: 0 auto 1.5rem;
+  border: 1px solid #0e7c3c;
+  background: #001a08;
+  filter: drop-shadow(0 0 0.8rem rgb(26 255 128 / 35%));
+}
+
+.project-image {
+  width: min(100%, 28rem);
+}
+
 h1,
 h2,
 h3 {

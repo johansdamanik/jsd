@@ -4,13 +4,21 @@ SEO covers search engines; GEO covers discovery and citation by generative searc
 
 ## Source of truth
 
-- `src/data/siteConfig.ts`: domain, identity, location, contact, employment, resume, social links, homepage metadata, OG image, and homepage `lastModified`.
+- `src/data/siteConfig.ts`: domain, identity, location, contact, employment, resume, social links, profile image, homepage metadata, OG image, and homepage `lastModified`.
 - `src/data/portfolioData.ts`: visible profile content plus project/case-study data.
 - `scripts/generate-seo.ts`: validates source data and generates static HTML, JSON-LD, sitemap, robots, `llms.txt`, and manifest output.
 
 Each `QUESTS_DATA` project requires `slug`, `seoTitle`, `seoDescription`, `caseStudySummary`, `imagePath`, and ISO `dateModified`, in addition to its visible portfolio fields. Slugs must be unique. Demo URLs must use HTTPS; repository URLs must use HTTPS on `github.com`; referenced images must exist in `public/`.
 
 Update `SITE_CONFIG.seo.lastModified` after a significant homepage/profile change. Update only the affected project's `dateModified` after a significant case-study, structured-data, or link change. Use the real `YYYY-MM-DD` date; do not bump dates for cosmetic-only edits.
+
+## Image rules
+
+- UI images live in `public/images/` and use WebP; use the smallest image that still looks sharp at its rendered size.
+- Every meaningful image has a concise `alt`, while decorative SPECIAL illustrations use an empty `alt` so screen readers do not repeat nearby text.
+- Above-the-fold profile/project images use explicit `width` and `height`, `decoding="async"`, and eager loading; below-the-fold UI images are lazy-loaded.
+- Project `imagePath` values must be relevant to that project, publicly reachable, and present in the generated JSON-LD and static case-study HTML.
+- Keep `/og-image.png` as the 1200×630 social preview. It is metadata artwork, not a replacement for a relevant profile or project image.
 
 ## Local workflow
 

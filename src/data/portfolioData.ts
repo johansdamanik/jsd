@@ -153,7 +153,6 @@ export const PERKS_DATA: Perk[] = [
   },
 ];
 
-const PROJECT_IMAGE_PATH = '/og-image.png';
 const QUESTS_DATE_MODIFIED = '2026-08-27';
 
 export const QUESTS_DATA: Quest[] = [
@@ -164,7 +163,7 @@ export const QUESTS_DATA: Quest[] = [
     seoTitle: 'Kartel Daun ERP & Commerce Case Study | Johan Simeon Damanik',
     seoDescription: 'Case study of an omnichannel botanical commerce platform with ERP, international logistics, inventory workflows, and payment integrations.',
     caseStudySummary: 'An omnichannel commerce platform and operational ERP for botanical exports, covering storefront, inventory, customs documentation, payments, and international logistics.',
-    imagePath: PROJECT_IMAGE_PATH,
+    imagePath: '/images/payment-and-api.webp',
     dateModified: QUESTS_DATE_MODIFIED,
     organization: 'PT Kartel Daun International',
     role: 'Lead Full-Stack Developer',
@@ -195,7 +194,7 @@ export const QUESTS_DATA: Quest[] = [
     seoTitle: 'PlantEx Export Platform Case Study | Johan Simeon Damanik',
     seoDescription: 'Case study of a plant export and supply-chain platform with courier quotes, phytosanitary paperwork, packing calculations, and multi-currency billing.',
     caseStudySummary: 'A plant export and supply-chain platform for order consolidation, flight schedules, packing calculations, customs documentation, invoicing, and multi-gateway payments.',
-    imagePath: PROJECT_IMAGE_PATH,
+    imagePath: '/images/problem-solving.webp',
     dateModified: QUESTS_DATE_MODIFIED,
     organization: 'PlantEx Platform',
     role: 'Full-Stack Architect',
@@ -225,7 +224,7 @@ export const QUESTS_DATA: Quest[] = [
     seoTitle: 'Kasira Restaurant POS Case Study | Johan Simeon Damanik',
     seoDescription: 'Case study of a cloud restaurant POS with QR ordering, split bills, multi-tenant access control, and a real-time kitchen display system.',
     caseStudySummary: 'A cloud restaurant POS covering table layouts, menus, checkout, thermal receipts, QR ordering, role-based access, and real-time kitchen displays.',
-    imagePath: PROJECT_IMAGE_PATH,
+    imagePath: '/images/payment-and-api.webp',
     dateModified: QUESTS_DATE_MODIFIED,
     organization: 'Kasira Platform',
     role: 'Creator & Lead Architect',
@@ -253,7 +252,7 @@ export const QUESTS_DATA: Quest[] = [
     seoTitle: 'Levelup Productivity PWA Case Study | Johan Simeon Damanik',
     seoDescription: 'Case study of an RPG productivity PWA with habits, quests, XP, boss battles, skill trees, offline support, and cloud state sync.',
     caseStudySummary: 'An RPG productivity PWA that turns habits and tasks into quests, XP, boss battles, avatar progression, and branching skill trees with offline support.',
-    imagePath: PROJECT_IMAGE_PATH,
+    imagePath: '/images/front-end.webp',
     dateModified: QUESTS_DATE_MODIFIED,
     organization: 'RPG Productivity',
     role: 'Sole Architect',
@@ -280,7 +279,7 @@ export const QUESTS_DATA: Quest[] = [
     seoTitle: 'SisiKita Community Platform Case Study | Johan Simeon Damanik',
     seoDescription: 'Case study of a community platform matching single-sided footwear and apparel by size, brand, model, and foot orientation.',
     caseStudySummary: 'A social utility platform for matching single-sided footwear and apparel, with listings, direct messaging, moderation, and automated candidate pairing.',
-    imagePath: PROJECT_IMAGE_PATH,
+    imagePath: '/images/collaboration.webp',
     dateModified: QUESTS_DATE_MODIFIED,
     organization: 'Community Platform',
     role: 'Full-Stack Developer',
@@ -308,7 +307,7 @@ export const QUESTS_DATA: Quest[] = [
     seoTitle: 'YT Tools Broadcast Automation Case Study | Johan Simeon Damanik',
     seoDescription: 'Case study of a continuous YouTube streaming pipeline with scheduled media loops, FFmpeg encoding, restart handling, and telemetry.',
     caseStudySummary: 'A continuous YouTube streaming pipeline for scheduled media loops, FFmpeg encoding, automatic restart handling, and WebSocket health telemetry.',
-    imagePath: PROJECT_IMAGE_PATH,
+    imagePath: '/images/ci-cd.webp',
     dateModified: QUESTS_DATE_MODIFIED,
     organization: 'Streaming Infrastructure',
     role: 'Backend & Media Engineer',

@@ -59,7 +59,11 @@ export const StatView: React.FC<StatViewProps> = ({ subTab }) => {
 
             {/* Central Animated Vault Boy with Laptop & Radar circles */}
             <div className="my-1 sm:my-6 relative flex flex-col items-center justify-center">
-              <VaultBoyGraphic variant="developer" size={160} />
+              <VaultBoyGraphic
+                variant="developer"
+                size={160}
+                alt="Johan Simeon Damanik building web applications"
+              />
             </div>
 
             {/* Tagline Quote & Name */}
@@ -344,6 +348,10 @@ export const StatView: React.FC<StatViewProps> = ({ subTab }) => {
                 >
                   <X className="w-5 h-5" />
                 </button>
+              </div>
+
+              <div className="flex justify-center py-2 shrink-0">
+                <VaultBoyGraphic variant={getVaultBoyVariant(selectedSpecial.id)} size={120} />
               </div>
 
               {/* Modal Scrollable Content */}

@@ -57,6 +57,15 @@ export default function App() {
     setCrtEffect(!crtEffect);
   };
 
+  const handleSelectTab = (tab: TabType) => {
+    if (tab === 'STAT' && typeof window !== 'undefined' && window.location.pathname !== '/') {
+      window.history.pushState({}, '', '/');
+      setActiveTab('STAT');
+      return;
+    }
+    setActiveTab(tab);
+  };
+
   return (
     <>
       <div inert={isBooting} aria-hidden={isBooting ? true : undefined}>
@@ -68,7 +77,7 @@ export default function App() {
           {/* Top Header Navigation Tabs & Sub-Tabs */}
           <HeaderNav
             activeTab={activeTab}
-            onSelectTab={setActiveTab}
+            onSelectTab={handleSelectTab}
             statSubTab={statSubTab}
             onSelectStatSubTab={setStatSubTab}
             dataSubTab={dataSubTab}

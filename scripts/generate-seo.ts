@@ -130,6 +130,7 @@ async function validateInputs(): Promise<void> {
     ['SITE_CONFIG.employment.organization', SITE_CONFIG.employment.organization],
     ['SITE_CONFIG.employment.role', SITE_CONFIG.employment.role],
     ['SITE_CONFIG.resume.path', SITE_CONFIG.resume.path],
+    ['SITE_CONFIG.profileImage.path', SITE_CONFIG.profileImage.path],
     ['SITE_CONFIG.seo.homeTitle', SITE_CONFIG.seo.homeTitle],
     ['SITE_CONFIG.seo.homeDescription', SITE_CONFIG.seo.homeDescription],
     ['SITE_CONFIG.seo.ogImagePath', SITE_CONFIG.seo.ogImagePath],
@@ -146,6 +147,7 @@ async function validateInputs(): Promise<void> {
   assertIsoDate('SITE_CONFIG.seo.lastModified', SITE_CONFIG.seo.lastModified);
   await assertPublicFile('SITE_CONFIG.seo.ogImagePath', SITE_CONFIG.seo.ogImagePath);
   await assertPublicFile('SITE_CONFIG.resume.path', SITE_CONFIG.resume.path);
+  await assertPublicFile('SITE_CONFIG.profileImage.path', SITE_CONFIG.profileImage.path);
   if (RESUME_URL !== new URL(SITE_CONFIG.resume.path, `${SITE_CONFIG.domain}/`).toString()) {
     throw new Error('Resume URL must be derived from SITE_CONFIG.domain and SITE_CONFIG.resume.path.');
   }
@@ -196,7 +198,7 @@ function personSchema(): JsonLd {
     familyName: SITE_CONFIG.identity.familyName,
     jobTitle: SITE_CONFIG.role,
     url: HOME_URL,
-    image: OG_IMAGE_URL,
+    image: absoluteUrl(SITE_CONFIG.profileImage.path),
     email: `mailto:${SITE_CONFIG.contact.email}`,
     telephone: SITE_CONFIG.contact.phone.replaceAll(' ', ''),
     sameAs: [SITE_CONFIG.social.github],
@@ -401,6 +403,7 @@ function aboutPage(): string {
     schema,
     body: `
       <header class="hero">
+        <img class="profile-image" src="${escapeHtml(SITE_CONFIG.profileImage.path)}" width="${SITE_CONFIG.profileImage.width}" height="${SITE_CONFIG.profileImage.height}" alt="${escapeHtml(SITE_CONFIG.profileImage.alt)}" loading="eager" decoding="async">
         <p class="status">● AVAILABLE PROFILE DATA</p>
         <h1>${escapeHtml(SITE_CONFIG.identity.name)}</h1>
         <p class="lead">${escapeHtml(SITE_CONFIG.role)} — ${escapeHtml(SITE_CONFIG.location.label)}</p>
@@ -475,12 +478,32 @@ async function interactiveProjectsPage(): Promise<string> {
     `<link rel="canonical" href="${projectsUrl}" />`,
     'projects canonical link',
   );
-  return replaceExactlyOnce(
+  html = replaceExactlyOnce(
     html,
     /<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/i,
     `<script type="application/ld+json">\n${jsonLd(projectsSchema())}\n    </script>`,
     'projects JSON-LD script',
   );
+  return replaceExactlyOnce(html, /<noscript>[\s\S]*?<\/noscript>/i, projectsNoscript(), 'projects noscript fallback');
+}
+
+function projectsNoscript(): string {
+  const projectLinks = QUESTS_DATA.map((quest) => `
+          <article>
+            <h2><a href="${escapeHtml(projectRoute(quest))}">${escapeHtml(quest.title)}</a></h2>
+            <p>${escapeHtml(quest.caseStudySummary)}</p>
+            <p><strong>TECH:</strong> ${escapeHtml(quest.techStack.join(', '))}</p>
+          </article>`).join('');
+  return `<noscript>
+      <main style="padding: 32px; font-family: sans-serif; max-width: 900px; margin: 0 auto; line-height: 1.6; background-color: #030804; color: #1aff80;">
+        <header>
+          <h1>${escapeHtml(PROJECTS_TITLE)}</h1>
+          <p>${escapeHtml(PROJECTS_DESCRIPTION)}</p>
+        </header>
+        <section aria-label="Project case studies">${projectLinks}
+        </section>
+      </main>
+    </noscript>`;
 }
 
 function projectSchema(quest: Quest): JsonLd {
@@ -545,8 +568,9 @@ function projectPage(quest: Quest): string {
         <a href="/">HOME</a> / <a href="/projects/">PROJECTS</a> / <span>${escapeHtml(quest.title)}</span>
       </nav>
       <article>
-        <header class="hero">
+          <header class="hero">
           <p class="status">${escapeHtml(quest.status)} // ${escapeHtml(quest.type)}</p>
+          <img class="project-image" src="${escapeHtml(quest.imagePath)}" width="800" height="800" alt="${escapeHtml(`${quest.title} project illustration`)}" loading="eager" decoding="async">
           <h1>${escapeHtml(quest.title)}</h1>
           <p class="lead">${escapeHtml(quest.caseStudySummary)}</p>
           <dl class="facts">

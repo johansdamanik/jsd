@@ -27,6 +27,12 @@ export const SITE_CONFIG = {
   resume: {
     path: '/cv-johan-simeon-damanik.pdf',
   },
+  profileImage: {
+    path: '/images/simeon-char.webp',
+    width: 800,
+    height: 800,
+    alt: 'Johan Simeon Damanik building web applications',
+  },
   social: {
     github: 'https://github.com/johansdamanik',
   },

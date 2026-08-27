@@ -26,9 +26,32 @@ interface VaultBoyGraphicProps {
   variant: VaultBoyVariant;
   className?: string;
   size?: number;
+  alt?: string;
 }
 
-export const VaultBoyGraphic: React.FC<VaultBoyGraphicProps> = ({ variant, className = '', size = 200 }) => {
+const VAULT_BOY_IMAGES: Record<VaultBoyVariant, string> = {
+  developer: '/images/simeon-char.webp',
+  frontend: '/images/front-end.webp',
+  backend: '/images/back-end.webp',
+  database: '/images/database.webp',
+  integrations: '/images/payment-and-api.webp',
+  softskills: '/images/soft-skills.webp',
+  devops: '/images/ci-cd.webp',
+  ai: '/images/ai-development.webp',
+  collaboration: '/images/collaboration.webp',
+  problemsolving: '/images/problem-solving.webp',
+  strength: '/images/front-end.webp',
+  perception: '/images/ai-development.webp',
+  endurance: '/images/back-end.webp',
+  charisma: '/images/soft-skills.webp',
+  intelligence: '/images/database.webp',
+  agility: '/images/payment-and-api.webp',
+  luck: '/images/ci-cd.webp',
+  perk: '/images/soft-skills.webp',
+  quest: '/images/problem-solving.webp',
+};
+
+export const VaultBoyGraphic: React.FC<VaultBoyGraphicProps> = ({ variant, className = '', size = 200, alt = '' }) => {
   return (
     <div className={`relative flex items-center justify-center ${className}`}>
       {/* Background glowing radar circles */}
@@ -47,74 +70,60 @@ export const VaultBoyGraphic: React.FC<VaultBoyGraphicProps> = ({ variant, class
         />
       </div>
 
-      <motion.svg
+      <motion.img
+        src={VAULT_BOY_IMAGES[variant]}
+        alt={alt}
         width={size}
         height={size}
-        viewBox="0 0 240 240"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+        loading={variant === 'developer' ? 'eager' : 'lazy'}
+        decoding="async"
+        fetchPriority={variant === 'developer' ? 'high' : 'auto'}
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="filter drop-shadow-[0_0_8px_rgba(26,255,128,0.7)]"
-      >
-        {/* Render graphic based on variant */}
-        {variant === 'developer' && <DeveloperVaultBoy />}
-        {(variant === 'frontend' || variant === 'strength') && <FrontendVaultBoy />}
-        {(variant === 'backend' || variant === 'endurance') && <BackendVaultBoy />}
-        {(variant === 'database' || variant === 'intelligence') && <DatabaseVaultBoy />}
-        {(variant === 'integrations' || variant === 'agility') && <IntegrationsVaultBoy />}
-        {(variant === 'softskills' || variant === 'charisma') && <SoftSkillsVaultBoy />}
-        {(variant === 'devops' || variant === 'luck') && <DeploymentVaultBoy />}
-        {(variant === 'ai' || variant === 'perception') && <AIDevelopmentVaultBoy />}
-        {variant === 'collaboration' && <CollaborationVaultBoy />}
-        {variant === 'problemsolving' && <ProblemSolvingVaultBoy />}
-        {variant === 'perk' && <PerkVaultBoy />}
-        {variant === 'quest' && <QuestVaultBoy />}
-      </motion.svg>
+        className="object-contain filter drop-shadow-[0_0_8px_rgba(26,255,128,0.7)]"
+      />
     </div>
   );
 };
 
-// Vault Boy with Laptop (Reference Image 3)
+// Pip-Boy-inspired developer with wrist computer
 const DeveloperVaultBoy = () => (
   <g stroke="#1aff80" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="#1aff80" fillOpacity="0.15">
-    {/* Head & Hair */}
-    <path d="M 100 65 Q 120 40 140 65 Q 155 75 145 95 Q 135 110 120 110 Q 105 110 95 95 Q 85 75 100 65 Z" />
-    {/* Hair Swirl */}
-    <path d="M 98 62 Q 110 45 130 50 Q 148 55 145 68 Q 135 60 120 62 Q 105 65 98 62 Z" fill="#1aff80" fillOpacity="0.5" />
+    {/* Head, ears, and classic swept hair */}
+    <circle cx="120" cy="72" r="29" />
+    <path d="M 94 65 Q 101 39 126 43 Q 148 43 151 61 Q 140 56 130 59 Q 116 53 102 68 Z" fill="#1aff80" fillOpacity="0.55" />
+    <path d="M 91 69 Q 85 70 88 80 Q 91 87 97 83" fill="none" />
+    <path d="M 149 69 Q 155 70 152 80 Q 149 87 143 83" fill="none" />
+    {/* Friendly Pip-Boy face */}
+    <circle cx="110" cy="72" r="3" fill="#1aff80" />
+    <circle cx="130" cy="72" r="3" fill="#1aff80" />
+    <path d="M 108 88 Q 120 99 132 88" fill="none" strokeWidth="3" />
 
-    {/* Eyeglasses */}
-    <rect x="102" y="75" width="14" height="10" rx="2" fill="none" strokeWidth="2.5" />
-    <rect x="124" y="75" width="14" height="10" rx="2" fill="none" strokeWidth="2.5" />
-    <line x1="116" y1="80" x2="124" y2="80" strokeWidth="2.5" />
-    {/* Smile */}
-    <path d="M 112 96 Q 120 102 128 96" fill="none" strokeWidth="2.5" />
+    {/* Vault jumpsuit torso and collar */}
+    <path d="M 101 102 L 139 102 L 153 158 L 87 158 Z" />
+    <path d="M 108 101 L 120 116 L 132 101" fill="none" strokeWidth="3" />
+    <line x1="120" y1="116" x2="120" y2="158" strokeWidth="2" strokeDasharray="3 3" />
+    <path d="M 91 148 L 149 148" fill="none" strokeWidth="2" />
+    <text x="111" y="143" fill="#1aff80" stroke="none" fontSize="9" fontFamily="monospace">13</text>
 
-    {/* Body / Jacket */}
-    <path d="M 100 110 L 85 155 L 105 160 L 120 120 L 135 160 L 155 155 L 140 110 Z" />
-    <line x1="120" y1="110" x2="120" y2="165" strokeWidth="2" strokeDasharray="3 3" />
+    {/* Left arm displaying the Pip-Boy wrist computer */}
+    <path d="M 101 111 L 79 139 L 91 151 L 111 129" fill="none" strokeWidth="3" />
+    <path d="M 82 136 L 104 151" fill="none" strokeWidth="5" />
+    <rect x="76" y="128" width="31" height="24" rx="4" fill="#001a08" stroke="#1aff80" strokeWidth="2.5" transform="rotate(-22 76 128)" />
+    <rect x="82" y="133" width="17" height="10" fill="#1aff80" fillOpacity="0.35" stroke="#1aff80" strokeWidth="1.5" transform="rotate(-22 82 133)" />
+    <line x1="85" y1="138" x2="96" y2="134" strokeWidth="1.5" />
+    <circle cx="103" cy="139" r="2" fill="#1aff80" />
 
-    {/* Legs */}
-    <path d="M 100 160 L 95 205 L 110 205 L 115 165" />
-    <path d="M 140 160 L 145 205 L 130 205 L 125 165" />
-    {/* Shoes */}
-    <path d="M 90 205 L 112 205 Q 115 212 100 212 Q 88 212 90 205 Z" fill="#1aff80" />
-    <path d="M 128 205 L 150 205 Q 152 212 140 212 Q 126 212 128 205 Z" fill="#1aff80" />
+    {/* Right arm and raised thumb */}
+    <path d="M 139 111 L 160 137 L 151 151 L 130 129" fill="none" strokeWidth="3" />
+    <path d="M 157 137 Q 166 128 169 135 Q 170 140 164 143 L 153 151" fill="#1aff80" fillOpacity="0.3" />
 
-    {/* Arms holding laptop */}
-    <path d="M 85 125 L 75 145 L 90 152" fill="none" strokeWidth="3" />
-    <path d="M 155 125 L 165 145 L 150 152" fill="none" strokeWidth="3" />
-
-    {/* Laptop Device glowing */}
-    <rect x="68" y="130" width="38" height="26" rx="2" fill="#001a08" stroke="#1aff80" strokeWidth="2" />
-    <rect x="74" y="135" width="10" height="10" fill="#1aff80" opacity="0.4" />
-    {/* Laptop keyboard base */}
-    <polygon points="60,156 112,156 102,166 70,166" fill="#1aff80" fillOpacity="0.4" stroke="#1aff80" strokeWidth="1.5" />
-    {/* Screen code glow lines */}
-    <line x1="72" y1="136" x2="88" y2="136" stroke="#1aff80" strokeWidth="1.5" />
-    <line x1="72" y1="141" x2="94" y2="141" stroke="#1aff80" strokeWidth="1.5" />
-    <line x1="72" y1="146" x2="84" y2="146" stroke="#1aff80" strokeWidth="1.5" />
+    {/* Legs and heavy boots */}
+    <path d="M 101 158 L 96 204 L 112 204 L 119 161" />
+    <path d="M 139 158 L 144 204 L 128 204 L 121 161" />
+    <path d="M 90 204 L 114 204 Q 116 214 101 214 L 87 211 Z" fill="#1aff80" />
+    <path d="M 126 204 L 150 204 L 153 211 Q 139 214 124 214 Z" fill="#1aff80" />
   </g>
 );
 

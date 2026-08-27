@@ -1,0 +1,17 @@
+{
+  "name": "Johan Simeon Damanik - Full-Stack Developer",
+  "short_name": "Johan Simeon Damanik",
+  "description": "Full-Stack Developer Portfolio for Johan Simeon Damanik.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030804",
+  "theme_color": "#1aff80",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

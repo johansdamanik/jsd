@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --pip-primary: #1aff80;
+    --pip-bright: #50ff9c;
+    --pip-glow: rgba(26, 255, 128, 0.45);
+    --pip-dim: rgba(26, 255, 128, 0.15);
+    --pip-bg-dark: #001a08;
+    --pip-bg-card: #011406;
+  }
+
+  body {
+    font-family: 'Share Tech Mono', 'VT323', monospace;
+    background-color: #030804;
+    color: var(--pip-primary);
+    text-shadow: 0 0 2.5px var(--pip-glow);
+  }
+}
+
+/* CRT Scanlines Overlay - Balanced authentic retro texture */
+.crt-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.28) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.022),
+    rgba(0, 255, 0, 0.014),
+    rgba(0, 0, 255, 0.022)
+  );
+  background-size: 100% 3.5px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* CRT Screen Glow Vignette - Classic curved monitor shading */
+.crt-vignette {
+  background: radial-gradient(circle at center, transparent 68%, rgba(0, 14, 3, 0.65) 100%);
+  pointer-events: none;
+}
+
+/* CRT Screen Scan Bar Animation - Atmospheric sweep */
+@keyframes crtScan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1000%);
+  }
+}
+
+.crt-scan-bar {
+  animation: crtScan 9s linear infinite;
+  background: linear-gradient(to bottom, transparent, var(--pip-glow), transparent);
+  pointer-events: none;
+}
+
+/* Pip-Boy Dynamic Glow Filters and Text Glow */
+.pip-glow {
+  text-shadow: 0 0 4px var(--pip-glow), 0 0 9px var(--pip-glow);
+}
+
+.pip-box-glow {
+  box-shadow: 0 0 10px var(--pip-dim), inset 0 0 10px var(--pip-dim);
+}
+
+.pip-border-glow {
+  box-shadow: 0 0 8px var(--pip-glow);
+}
+
+/* Dynamic theme helpers */
+.pip-text-primary {
+  color: var(--pip-primary) !important;
+}
+
+.pip-text-bright {
+  color: var(--pip-bright) !important;
+}
+
+.pip-bg-primary {
+  background-color: var(--pip-primary) !important;
+}
+
+.pip-bg-card {
+  background-color: var(--pip-bg-card) !important;
+}
+
+.pip-border-primary {
+  border-color: var(--pip-primary) !important;
+}
+
+/* Custom Scrollbar for Pip-Boy */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 30, 10, 0.6);
+  border: 1px solid var(--pip-dim);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pip-primary);
+  box-shadow: 0 0 6px var(--pip-glow);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pip-bright);
+}

@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://simeon.id/sitemap.xml

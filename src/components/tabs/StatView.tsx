@@ -4,7 +4,7 @@ import { StatSubTab, SpecialStat, Perk } from '../../types';
 import { PROFILE, SPECIAL_STATS, PERKS_DATA } from '../../data/portfolioData';
 import { VaultBoyGraphic, VaultBoyVariant } from '../VaultBoyGraphic';
 import { playPipboyClick, playFanfare } from '../../utils/audio';
-import { Layout, Code, Server, Database, Zap, Users, Cpu, ExternalLink, Award, MapPin, Phone, Mail, Github, Linkedin, Globe, CheckCircle2, X, ChevronRight } from 'lucide-react';
+import { Layout, Code, Server, Database, Zap, Users, Cpu, ExternalLink, FolderGit2, Award, MapPin, Phone, Mail, Github, Linkedin, Globe, CheckCircle2, X, ChevronRight } from 'lucide-react';
 
 interface StatViewProps {
   subTab: StatSubTab;
@@ -35,7 +35,7 @@ export const StatView: React.FC<StatViewProps> = ({ subTab }) => {
   };
 
   return (
-    <div className="w-full h-full p-4 md:p-6 overflow-y-auto">
+    <div className="w-full h-full p-2 sm:p-4 md:p-6 overflow-y-auto">
       <AnimatePresence mode="wait">
         {/* SUBTAB: STATUS */}
         {subTab === 'STATUS' && (
@@ -45,42 +45,42 @@ export const StatView: React.FC<StatViewProps> = ({ subTab }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25 }}
-            className="flex flex-col items-center justify-between min-h-full max-w-4xl mx-auto py-2"
+            className="flex flex-col items-center gap-2 sm:gap-4 min-h-full max-w-4xl mx-auto py-1 sm:py-2"
           >
             {/* Top Title */}
             <div className="text-center">
-              <h2 className="text-base sm:text-lg md:text-xl font-bold tracking-[0.25em] text-[#50ff9c] filter drop-shadow-[0_0_8px_rgba(26,255,128,0.8)]">
+              <h2 className="text-sm sm:text-lg md:text-xl font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#50ff9c] filter drop-shadow-[0_0_8px_rgba(26,255,128,0.8)]">
                 {PROFILE.title.toUpperCase()}
               </h2>
-              <p className="text-xs sm:text-sm text-[#1aff80]/70 tracking-widest mt-0.5">
+              <p className="text-[10px] sm:text-sm text-[#1aff80]/70 tracking-[0.12em] sm:tracking-widest mt-0.5">
                 VAULT-111 CERTIFIED OPERATOR // ID: JSD-2026
               </p>
             </div>
 
             {/* Central Animated Vault Boy with Laptop & Radar circles */}
-            <div className="my-6 relative flex flex-col items-center justify-center">
-              <VaultBoyGraphic variant="developer" size={210} />
+            <div className="my-1 sm:my-6 relative flex flex-col items-center justify-center">
+              <VaultBoyGraphic variant="developer" size={160} />
             </div>
 
             {/* Tagline Quote & Name */}
-            <div className="text-center max-w-2xl px-4 space-y-3">
+            <div className="text-center max-w-2xl px-1 sm:px-4 space-y-2 sm:space-y-3">
               <p className="text-xs sm:text-sm md:text-base italic text-[#1aff80]/90 leading-relaxed font-mono">
                 &ldquo;{PROFILE.tagline}&rdquo;
               </p>
 
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-black tracking-[0.25em] text-[#50ff9c] filter drop-shadow-[0_0_12px_rgba(26,255,128,0.9)]">
+              <h2 className="text-lg sm:text-2xl md:text-3xl font-black tracking-[0.18em] sm:tracking-[0.25em] text-[#50ff9c] filter drop-shadow-[0_0_12px_rgba(26,255,128,0.9)]">
                 {PROFILE.name.toUpperCase()}
-              </h1>
+              </h2>
 
               {/* Direct Info Badges */}
-              <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 pt-2 text-xs">
-                <span className="flex items-center gap-1 bg-[#1aff80]/10 border border-[#1aff80]/30 px-2.5 py-1">
+              <div className="flex flex-wrap justify-center items-center gap-1 sm:gap-4 pt-1 sm:pt-2 text-[10px] sm:text-xs">
+                <span className="flex items-center gap-1 bg-[#1aff80]/10 border border-[#1aff80]/30 px-1.5 sm:px-2.5 py-0.5 sm:py-1">
                   <MapPin className="w-3.5 h-3.5 text-[#50ff9c]" />
                   {PROFILE.location}
                 </span>
                 <a
                   href={`mailto:${PROFILE.email}`}
-                  className="flex items-center gap-1 bg-[#1aff80]/10 border border-[#1aff80]/30 px-2.5 py-1 hover:bg-[#1aff80]/30 hover:border-[#1aff80] transition-colors"
+                  className="flex items-center gap-1 bg-[#1aff80]/10 border border-[#1aff80]/30 px-1.5 sm:px-2.5 py-0.5 sm:py-1 hover:bg-[#1aff80]/30 hover:border-[#1aff80] transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5 text-[#50ff9c]" />
                   {PROFILE.email}
@@ -89,17 +89,34 @@ export const StatView: React.FC<StatViewProps> = ({ subTab }) => {
                   href="https://wa.me/6281222234454"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-1 bg-[#1aff80]/10 border border-[#1aff80]/30 px-2.5 py-1 hover:bg-[#1aff80]/30 hover:border-[#1aff80] transition-colors"
+                  className="flex items-center gap-1 bg-[#1aff80]/10 border border-[#1aff80]/30 px-1.5 sm:px-2.5 py-0.5 sm:py-1 hover:bg-[#1aff80]/30 hover:border-[#1aff80] transition-colors"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#50ff9c]" />
                   {PROFILE.phone}
                 </a>
+                <a
+                  href="/cv-johan-simeon-damanik.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 border border-[#1aff80]/30 bg-[#1aff80]/10 px-1.5 py-0.5 transition-colors hover:border-[#1aff80] hover:bg-[#1aff80]/30 sm:px-2.5 sm:py-1"
+                >
+                  <ExternalLink className="h-3.5 w-3.5 text-[#50ff9c]" aria-hidden="true" />
+                  RESUME
+                </a>
               </div>
 
               {/* Summary text */}
-              <div className="mt-4 p-3 bg-[#011406]/70 border border-[#1aff80]/30 text-left text-xs sm:text-sm leading-relaxed text-[#1aff80]/80 font-mono">
+              <div className="mt-2 sm:mt-4 p-2 sm:p-3 bg-[#011406]/70 border border-[#1aff80]/30 text-left text-[10px] sm:text-sm leading-relaxed text-[#1aff80]/80 font-mono">
                 <span className="text-[#50ff9c] font-bold">[OPERATOR DOSSIER]:</span> {PROFILE.summary}
               </div>
+
+              <a
+                href="/projects/"
+                className="mx-auto mt-2 inline-flex items-center gap-1 border border-[#1aff80] bg-[#1aff80] px-2.5 py-1 text-[10px] font-bold tracking-wider text-black transition-colors hover:bg-[#50ff9c] sm:mt-3 sm:text-xs"
+              >
+                <FolderGit2 className="h-3.5 w-3.5" aria-hidden="true" />
+                VIEW PROJECT
+              </a>
             </div>
           </motion.div>
         )}

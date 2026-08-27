@@ -15,11 +15,31 @@ import { InvView } from './components/tabs/InvView';
 import { MapView } from './components/tabs/MapView';
 import { RadioView } from './components/tabs/RadioView';
 import { ContactModal } from './components/ContactModal';
+import { QUESTS_DATA } from './data/portfolioData';
 import { toggleAudioMute, isAudioMuted } from './utils/audio';
 
+const getInitialProjectView = () => {
+  if (typeof window === 'undefined') return { activeTab: 'STAT' as TabType };
+
+  const match = window.location.pathname.match(/^\/projects(?:\/([^/]+))?\/?$/);
+  if (!match) return { activeTab: 'STAT' as TabType };
+  if (!match[1]) return { activeTab: 'DATA' as TabType };
+
+  const quest = QUESTS_DATA.find(({ slug }) => slug === match[1]);
+  return quest
+    ? { activeTab: 'DATA' as TabType, projectSlug: quest.slug }
+    : { activeTab: 'STAT' as TabType };
+};
+
+const isDirectContentRoute = (pathname: string) =>
+  pathname === '/about' || pathname === '/about/' || pathname === '/projects' || pathname.startsWith('/projects/');
+
 export default function App() {
-  const [isBooting, setIsBooting] = useState<boolean>(true);
-  const [activeTab, setActiveTab] = useState<TabType>('STAT');
+  const [initialView] = useState(getInitialProjectView);
+  const [isBooting, setIsBooting] = useState(() =>
+    typeof window === 'undefined' || !isDirectContentRoute(window.location.pathname),
+  );
+  const [activeTab, setActiveTab] = useState<TabType>(initialView.activeTab);
   const [statSubTab, setStatSubTab] = useState<StatSubTab>('STATUS');
   const [dataSubTab, setDataSubTab] = useState<DataSubTab>('QUESTS');
   const [invSubTab, setInvSubTab] = useState<InvSubTab>('WEAPONS');
@@ -39,10 +59,7 @@ export default function App() {
 
   return (
     <>
-      {/* Boot Typewriter Loading Screen (When first visiting or re-triggered) */}
-      {isBooting ? (
-        <TypewriterBoot onComplete={() => setIsBooting(false)} />
-      ) : (
+      <div inert={isBooting} aria-hidden={isBooting ? true : undefined}>
         <PipBoyFrame
           theme={theme}
           onChangeTheme={setTheme}
@@ -61,9 +78,9 @@ export default function App() {
           />
 
           {/* Main Tab Screen Content */}
-          <div className="flex-1 overflow-hidden relative">
+          <div className="flex-1 min-h-0 overflow-hidden relative">
             {activeTab === 'STAT' && <StatView subTab={statSubTab} />}
-            {activeTab === 'DATA' && <DataView subTab={dataSubTab} />}
+            {activeTab === 'DATA' && <DataView subTab={dataSubTab} initialQuestSlug={initialView.projectSlug} />}
             {activeTab === 'INV' && <InvView subTab={invSubTab} />}
             {activeTab === 'MAP' && <MapView />}
             {activeTab === 'RADIO' && <RadioView soundEnabled={soundEnabled} />}
@@ -84,7 +101,10 @@ export default function App() {
             onClose={() => setIsContactOpen(false)}
           />
         </PipBoyFrame>
-      )}
+      </div>
+
+      {/* Boot sequence overlays the rendered app so its content remains in the DOM. */}
+      {isBooting && <TypewriterBoot onComplete={() => setIsBooting(false)} />}
     </>
   );
 }

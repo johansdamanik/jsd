@@ -1,11 +1,13 @@
 User-agent: *
 Allow: /
 
-# Generative AI & Search Engine Bots
-User-agent: GPTBot
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
 Allow: /
 
 User-agent: PerplexityBot

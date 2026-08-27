@@ -20,24 +20,24 @@ export const FooterStatusBar: React.FC<FooterStatusBarProps> = ({
 }) => {
 
   return (
-    <footer className="w-full border-t border-[#1aff80]/30 pt-2 pb-3 px-4 md:px-8 bg-[#020a04]/90 select-none flex flex-col gap-2">
+    <footer className="w-full border-t border-[#1aff80]/30 pt-1 pb-1.5 sm:pt-2 sm:pb-3 px-2 sm:px-4 md:px-8 bg-[#020a04]/90 select-none flex flex-col gap-1 sm:gap-2">
       {/* Top row: HP, Level, XP Bar, AP */}
-      <div className="flex items-center justify-between gap-2 sm:gap-6 text-xs sm:text-sm font-bold tracking-widest">
+      <div className="flex items-center justify-between gap-1 sm:gap-6 text-[10px] sm:text-sm font-bold tracking-[0.08em] sm:tracking-widest">
         {/* HP Bar */}
         <div className="flex items-center gap-2" title={`Hit Points: ${PROFILE.hp}`}>
           <span className="text-[#1aff80]/80">HP</span>
-          <div className="w-16 sm:w-28 h-3.5 bg-[#00220d] border border-[#1aff80]/50 p-0.5 flex" role="progressbar" aria-valuenow={95} aria-valuemin={0} aria-valuemax={100} aria-label="Hit Points">
+          <div className="w-12 sm:w-28 h-3 bg-[#00220d] border border-[#1aff80]/50 p-0.5 flex" role="progressbar" aria-valuenow={95} aria-valuemin={0} aria-valuemax={100} aria-label="Hit Points">
             <div className="h-full bg-[#1aff80] shadow-[0_0_6px_#1aff80] w-[95%]" />
           </div>
           <span className="text-xs">{PROFILE.hp}</span>
         </div>
 
         {/* Level & XP Center Bar */}
-        <div className="flex-1 max-w-xs sm:max-w-md flex items-center justify-center gap-2" title={`Level ${PROFILE.level} - 78% Experience`}>
+        <div className="flex-1 max-w-xs sm:max-w-md flex items-center justify-center gap-1 sm:gap-2" title={`Level ${PROFILE.level} - 78% Experience`}>
           <span className="text-xs sm:text-sm whitespace-nowrap text-[#50ff9c]">
             LEVEL {PROFILE.level}
           </span>
-          <div className="flex-1 h-3.5 bg-[#00220d] border border-[#1aff80]/50 p-0.5 relative overflow-hidden" role="progressbar" aria-valuenow={78} aria-valuemin={0} aria-valuemax={100} aria-label="Experience Points">
+            <div className="flex-1 h-3 bg-[#00220d] border border-[#1aff80]/50 p-0.5 relative overflow-hidden" role="progressbar" aria-valuenow={78} aria-valuemin={0} aria-valuemax={100} aria-label="Experience Points">
             <div
               className="h-full bg-[#1aff80] shadow-[0_0_6px_#1aff80] transition-all duration-500"
               style={{ width: '78%' }}
@@ -54,7 +54,7 @@ export const FooterStatusBar: React.FC<FooterStatusBarProps> = ({
         {/* AP Bar */}
         <div className="flex items-center gap-2" title={`Action Points: ${PROFILE.ap}`}>
           <span className="text-[#1aff80]/80">AP</span>
-          <div className="w-16 sm:w-28 h-3.5 bg-[#00220d] border border-[#1aff80]/50 p-0.5 flex" role="progressbar" aria-valuenow={100} aria-valuemin={0} aria-valuemax={100} aria-label="Action Points">
+          <div className="w-12 sm:w-28 h-3 bg-[#00220d] border border-[#1aff80]/50 p-0.5 flex" role="progressbar" aria-valuenow={100} aria-valuemin={0} aria-valuemax={100} aria-label="Action Points">
             <div className="h-full bg-[#1aff80] shadow-[0_0_6px_#1aff80] w-full" />
           </div>
           <span className="text-xs">{PROFILE.ap}</span>
@@ -62,9 +62,9 @@ export const FooterStatusBar: React.FC<FooterStatusBarProps> = ({
       </div>
 
       {/* Bottom utility status icons & quick actions */}
-      <div className="flex items-center justify-between text-[11px] text-[#1aff80]/70 pt-1 border-t border-[#1aff80]/15">
+      <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#1aff80]/70 pt-1 border-t border-[#1aff80]/15">
         <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1 whitespace-nowrap">
             <span className="w-2 h-2 rounded-full bg-[#1aff80] animate-pulse" aria-hidden="true" />
             STATUS: NOMINAL
           </span>
@@ -77,7 +77,7 @@ export const FooterStatusBar: React.FC<FooterStatusBarProps> = ({
         </div>
 
         {/* Control Toggles: Sound, CRT Scanlines, Quick Contact */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1 sm:gap-3">
           <button
             id="toggle-crt-btn"
             aria-label={`Toggle CRT Screen Scanlines (Currently ${crtEffect ? 'ON' : 'OFF'})`}

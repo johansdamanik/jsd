@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect, useRef } from 'react';
 import { playTypewriterClick, playFanfare } from '../utils/audio';
 
 interface TypewriterBootProps {
@@ -28,6 +27,11 @@ export const TypewriterBoot: React.FC<TypewriterBootProps> = ({ onComplete }) =>
   const [displayedText, setDisplayedText] = useState('');
   const [charIndex, setCharIndex] = useState(0);
   const [isBootFinished, setIsBootFinished] = useState(false);
+  const initializeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    initializeButtonRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     if (currentLineIndex >= BOOT_LOGS.length) {
@@ -42,8 +46,8 @@ export const TypewriterBoot: React.FC<TypewriterBootProps> = ({ onComplete }) =>
       const timeout = setTimeout(() => {
         setDisplayedText(prev => prev + targetLine[charIndex]);
         setCharIndex(prev => prev + 1);
-        playTypewriterClick();
-      }, 14); // Fast typewriter speed
+        if (charIndex % 5 === 0) playTypewriterClick();
+      }, 3);
       return () => clearTimeout(timeout);
     } else {
       // Completed line, move to next
@@ -52,19 +56,22 @@ export const TypewriterBoot: React.FC<TypewriterBootProps> = ({ onComplete }) =>
         setDisplayedText('');
         setCharIndex(0);
         setCurrentLineIndex(prev => prev + 1);
-      }, 70);
+      }, 20);
       return () => clearTimeout(timeout);
     }
   }, [currentLineIndex, charIndex]);
 
-  // Handle keyboard press to skip or enter
+  // Only explicit activation keys may skip the boot sequence.
   useEffect(() => {
-    const handleKeyDown = () => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!['Enter', ' ', 'Escape'].includes(event.key)) return;
+      if (event.target === initializeButtonRef.current && event.key !== 'Escape') return;
+      event.preventDefault();
       handleSkip();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [onComplete]);
 
   const handleSkip = () => {
     playFanfare();
@@ -74,14 +81,24 @@ export const TypewriterBoot: React.FC<TypewriterBootProps> = ({ onComplete }) =>
   return (
     <div
       id="pipboy-boot-screen"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="boot-screen-title"
+      aria-describedby="boot-screen-status"
       onClick={handleSkip}
       className="fixed inset-0 bg-[#030a05] text-[#1aff80] z-50 flex flex-col justify-between p-6 md:p-12 font-mono select-none cursor-pointer overflow-hidden"
     >
+      <span id="boot-screen-status" role="status" className="sr-only">
+        {isBootFinished
+          ? 'Boot complete. Activate the continue control to enter the Pip-Boy.'
+          : 'System boot in progress. Activate the skip control to skip.'}
+      </span>
+
       {/* Top Header */}
       <div className="flex justify-between items-center border-b border-[#1aff80]/40 pb-3">
         <div className="flex items-center gap-2">
           <span className="inline-block w-3 h-3 bg-[#1aff80] animate-ping" />
-          <span className="font-bold tracking-widest text-sm md:text-base">ROBCO INDUSTRIES V2.0.77</span>
+          <span id="boot-screen-title" className="font-bold tracking-widest text-sm md:text-base">ROBCO INDUSTRIES V2.0.77</span>
         </div>
         <div className="text-xs md:text-sm text-[#1aff80]/70 tracking-widest">
           SYS_BOOT // JOHAN_DAMANIK
@@ -107,25 +124,18 @@ export const TypewriterBoot: React.FC<TypewriterBootProps> = ({ onComplete }) =>
           </div>
         )}
 
-        {isBootFinished && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ repeat: Infinity, duration: 0.8, repeatType: 'reverse' }}
-            className="pt-6 text-center text-sm md:text-lg font-bold text-[#50ff9c] tracking-widest"
-          >
-            &gt;&gt;&gt; [ CLICK ANYWHERE OR PRESS ANY KEY TO ENTER PIP-BOY ] &lt;&lt;&lt;
-          </motion.div>
-        )}
       </div>
 
       {/* Bottom Footer Controls */}
       <div className="flex justify-between items-center border-t border-[#1aff80]/40 pt-4 text-xs md:text-sm text-[#1aff80]/80">
         <div className="flex items-center gap-4">
-          <span className="bg-[#1aff80]/20 px-2 py-1 border border-[#1aff80]/40 text-[#1aff80]">TAP SCREEN TO SKIP</span>
+          <span className="bg-[#1aff80]/20 px-2 py-1 border border-[#1aff80]/40 text-[#1aff80]">
+            {isBootFinished ? 'TAP TO CONTINUE' : 'TAP TO SKIP'}
+          </span>
           <span className="hidden sm:inline">VAULT-TEC HOLOTAPE INTERFACE</span>
         </div>
         <button
+          ref={initializeButtonRef}
           id="skip-boot-btn"
           onClick={(e) => {
             e.stopPropagation();
@@ -133,7 +143,7 @@ export const TypewriterBoot: React.FC<TypewriterBootProps> = ({ onComplete }) =>
           }}
           className="bg-[#1aff80] text-black font-bold px-4 py-1.5 tracking-wider hover:bg-white transition-colors cursor-pointer"
         >
-          INITIALIZE PIP-BOY 3000 &gt;&gt;
+          {isBootFinished ? 'CONTINUE >>' : 'SKIP >>'}
         </button>
       </div>
     </div>

@@ -33,7 +33,13 @@ export interface Perk {
 
 export interface Quest {
   id: string;
+  slug: string;
   title: string;
+  seoTitle: string;
+  seoDescription: string;
+  caseStudySummary: string;
+  imagePath: string;
+  dateModified: string;
   organization: string;
   role: string;
   period: string;

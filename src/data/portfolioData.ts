@@ -1,15 +1,15 @@
 import { SpecialStat, Perk, Quest, Education, InventoryItem, RadioStation } from '../types';
+import { SITE_CONFIG } from './siteConfig';
 
 export const PROFILE = {
-  name: 'Johan Simeon Damanik',
-  title: 'Full-Stack Developer',
-  location: 'Jakarta, Indonesia',
-  phone: '+62 812 2223 4454',
-  email: 'johansdamanik@gmail.com',
-  github: 'https://github.com',
-  linkedin: 'https://linkedin.com',
-  website: 'https://simeon.id',
-  resumeUrl: 'https://simeon.id/cv-johan-simeon-damanik.pdf',
+  name: SITE_CONFIG.identity.name,
+  title: SITE_CONFIG.role,
+  location: SITE_CONFIG.location.label,
+  phone: SITE_CONFIG.contact.phone,
+  email: SITE_CONFIG.contact.email,
+  github: SITE_CONFIG.social.github,
+  website: SITE_CONFIG.domain,
+  resumeUrl: new URL(SITE_CONFIG.resume.path, `${SITE_CONFIG.domain}/`).toString(),
   vaultNumber: '111',
   level: 28,
   hp: '95/100',
@@ -17,7 +17,7 @@ export const PROFILE = {
   caps: 4850,
   weight: '45/210',
   tagline: 'Building reliable ERP, commerce, POS, and scalable digital systems.',
-  summary: `Full-Stack Developer skilled in Vue/Nuxt, React/Next, Node/NestJS, and Laravel. Specializes in building scalable ERPs, POS systems, payment gateways, and business-critical APIs.`,
+  summary: SITE_CONFIG.description,
 };
 
 export const SPECIAL_STATS: SpecialStat[] = [
@@ -153,10 +153,19 @@ export const PERKS_DATA: Perk[] = [
   },
 ];
 
+const PROJECT_IMAGE_PATH = '/og-image.png';
+const QUESTS_DATE_MODIFIED = '2026-08-27';
+
 export const QUESTS_DATA: Quest[] = [
   {
     id: 'quest-karteldaun',
+    slug: 'kartel-daun',
     title: 'Kartel Daun (Botanical Emporium)',
+    seoTitle: 'Kartel Daun ERP & Commerce Case Study | Johan Simeon Damanik',
+    seoDescription: 'Case study of an omnichannel botanical commerce platform with ERP, international logistics, inventory workflows, and payment integrations.',
+    caseStudySummary: 'An omnichannel commerce platform and operational ERP for botanical exports, covering storefront, inventory, customs documentation, payments, and international logistics.',
+    imagePath: PROJECT_IMAGE_PATH,
+    dateModified: QUESTS_DATE_MODIFIED,
     organization: 'PT Kartel Daun International',
     role: 'Lead Full-Stack Developer',
     period: 'July 2023 – Present',
@@ -181,7 +190,13 @@ export const QUESTS_DATA: Quest[] = [
   },
   {
     id: 'quest-plantex',
+    slug: 'plantex',
     title: 'PlantEx (Global Flora Exporter)',
+    seoTitle: 'PlantEx Export Platform Case Study | Johan Simeon Damanik',
+    seoDescription: 'Case study of a plant export and supply-chain platform with courier quotes, phytosanitary paperwork, packing calculations, and multi-currency billing.',
+    caseStudySummary: 'A plant export and supply-chain platform for order consolidation, flight schedules, packing calculations, customs documentation, invoicing, and multi-gateway payments.',
+    imagePath: PROJECT_IMAGE_PATH,
+    dateModified: QUESTS_DATE_MODIFIED,
     organization: 'PlantEx Platform',
     role: 'Full-Stack Architect',
     period: '2026 – Present',
@@ -205,7 +220,13 @@ export const QUESTS_DATA: Quest[] = [
   },
   {
     id: 'quest-kasira',
+    slug: 'kasira',
     title: 'Kasira (Tavern Merchant POS)',
+    seoTitle: 'Kasira Restaurant POS Case Study | Johan Simeon Damanik',
+    seoDescription: 'Case study of a cloud restaurant POS with QR ordering, split bills, multi-tenant access control, and a real-time kitchen display system.',
+    caseStudySummary: 'A cloud restaurant POS covering table layouts, menus, checkout, thermal receipts, QR ordering, role-based access, and real-time kitchen displays.',
+    imagePath: PROJECT_IMAGE_PATH,
+    dateModified: QUESTS_DATE_MODIFIED,
     organization: 'Kasira Platform',
     role: 'Creator & Lead Architect',
     period: 'March 2026 – Present',
@@ -223,12 +244,17 @@ export const QUESTS_DATA: Quest[] = [
       'Multi-tenant database architecture handling daily shift revenue analytics and reporting.',
     ],
     techStack: ['Nuxt.js', 'Vue 3', 'Tailwind CSS', 'Pinia', 'NestJS', 'Prisma ORM', 'PostgreSQL', 'Turborepo'],
-    githubUrl: 'https://github.com/johan-damanik/kasira',
     xpReward: 2600,
   },
   {
     id: 'quest-levelup',
+    slug: 'levelup',
     title: 'Levelup (Gamified Productivity)',
+    seoTitle: 'Levelup Productivity PWA Case Study | Johan Simeon Damanik',
+    seoDescription: 'Case study of an RPG productivity PWA with habits, quests, XP, boss battles, skill trees, offline support, and cloud state sync.',
+    caseStudySummary: 'An RPG productivity PWA that turns habits and tasks into quests, XP, boss battles, avatar progression, and branching skill trees with offline support.',
+    imagePath: PROJECT_IMAGE_PATH,
+    dateModified: QUESTS_DATE_MODIFIED,
     organization: 'RPG Productivity',
     role: 'Sole Architect',
     period: 'May 2026 – Present',
@@ -245,12 +271,17 @@ export const QUESTS_DATA: Quest[] = [
       'Interactive visual skill tree and animated character stats progression.',
     ],
     techStack: ['Nuxt.js', 'Vue 3', 'Tailwind CSS', 'Pinia', 'NestJS', 'TypeScript', 'Prisma ORM', 'PostgreSQL', 'PWA'],
-    githubUrl: 'https://github.com/johan-damanik/levelup',
     xpReward: 2500,
   },
   {
     id: 'quest-sisikita',
+    slug: 'sisikita',
     title: 'SisiKita (Odd Pair Matcher)',
+    seoTitle: 'SisiKita Community Platform Case Study | Johan Simeon Damanik',
+    seoDescription: 'Case study of a community platform matching single-sided footwear and apparel by size, brand, model, and foot orientation.',
+    caseStudySummary: 'A social utility platform for matching single-sided footwear and apparel, with listings, direct messaging, moderation, and automated candidate pairing.',
+    imagePath: PROJECT_IMAGE_PATH,
+    dateModified: QUESTS_DATE_MODIFIED,
     organization: 'Community Platform',
     role: 'Full-Stack Developer',
     period: 'April 2026 – Present',
@@ -272,7 +303,13 @@ export const QUESTS_DATA: Quest[] = [
   },
   {
     id: 'quest-yt-tools',
+    slug: 'yt-tools',
     title: 'YT Tools (Broadcast Automator)',
+    seoTitle: 'YT Tools Broadcast Automation Case Study | Johan Simeon Damanik',
+    seoDescription: 'Case study of a continuous YouTube streaming pipeline with scheduled media loops, FFmpeg encoding, restart handling, and telemetry.',
+    caseStudySummary: 'A continuous YouTube streaming pipeline for scheduled media loops, FFmpeg encoding, automatic restart handling, and WebSocket health telemetry.',
+    imagePath: PROJECT_IMAGE_PATH,
+    dateModified: QUESTS_DATE_MODIFIED,
     organization: 'Streaming Infrastructure',
     role: 'Backend & Media Engineer',
     period: 'January 2026 – Present',
@@ -289,7 +326,6 @@ export const QUESTS_DATA: Quest[] = [
       'Real-time WebSocket telemetry dashboard for bitrate, CPU usage, and FPS health.',
     ],
     techStack: ['Nuxt.js', 'Node.js', 'Tailwind CSS', 'WebSocket', 'FFmpeg', 'PostgreSQL'],
-    githubUrl: 'https://github.com/johan-damanik/yt-tools',
     xpReward: 2000,
   },
 ];
@@ -413,7 +449,7 @@ export const INVENTORY_ITEMS: InventoryItem[] = [
     value: 9999,
     condition: 100,
     techType: 'Data Carrier',
-    description: 'Verified professional dossier, work history, and technical credentials in Vault-Tec PDF format.',
+    description: 'Professional dossier, work history, and technical credentials in Vault-Tec PDF format.',
     effect: 'Unlocks Interview | Charisma +10',
     actionLabel: 'OPEN HOLOTAPE (VIEW RESUME PDF)',
     actionUrl: 'https://simeon.id/cv-johan-simeon-damanik.pdf',

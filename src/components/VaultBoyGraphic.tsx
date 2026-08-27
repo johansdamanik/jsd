@@ -33,9 +33,18 @@ export const VaultBoyGraphic: React.FC<VaultBoyGraphicProps> = ({ variant, class
     <div className={`relative flex items-center justify-center ${className}`}>
       {/* Background glowing radar circles */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30">
-        <div className="w-[180px] h-[180px] rounded-full border border-[#1aff80] animate-pulse" />
-        <div className="absolute w-[220px] h-[220px] rounded-full border border-[#1aff80]/40" />
-        <div className="absolute w-[260px] h-[260px] rounded-full border border-dashed border-[#1aff80]/20" />
+        <div
+          className="rounded-full border border-[#1aff80] animate-pulse"
+          style={{ width: size * 0.86, height: size * 0.86 }}
+        />
+        <div
+          className="absolute rounded-full border border-[#1aff80]/40"
+          style={{ width: size * 1.05, height: size * 1.05 }}
+        />
+        <div
+          className="absolute rounded-full border border-dashed border-[#1aff80]/20"
+          style={{ width: size * 1.24, height: size * 1.24 }}
+        />
       </div>
 
       <motion.svg

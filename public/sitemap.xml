@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://simeon.id/</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://simeon.id/</loc><lastmod>2026-08-27</lastmod></url>
+  <url><loc>https://simeon.id/about/</loc><lastmod>2026-08-27</lastmod></url>
+  <url><loc>https://simeon.id/projects/</loc><lastmod>2026-08-27</lastmod></url>
+  <url><loc>https://simeon.id/projects/kartel-daun/</loc><lastmod>2026-08-27</lastmod></url>
+  <url><loc>https://simeon.id/projects/plantex/</loc><lastmod>2026-08-27</lastmod></url>
+  <url><loc>https://simeon.id/projects/kasira/</loc><lastmod>2026-08-27</lastmod></url>
+  <url><loc>https://simeon.id/projects/levelup/</loc><lastmod>2026-08-27</lastmod></url>
+  <url><loc>https://simeon.id/projects/sisikita/</loc><lastmod>2026-08-27</lastmod></url>
+  <url><loc>https://simeon.id/projects/yt-tools/</loc><lastmod>2026-08-27</lastmod></url>
 </urlset>

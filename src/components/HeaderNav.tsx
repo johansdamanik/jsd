@@ -45,11 +45,11 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   };
 
   return (
-    <header className="w-full flex flex-col pt-3 pb-2 px-4 md:px-8 border-b border-[#1aff80]/30 select-none">
+    <header className="w-full flex flex-col pt-1.5 sm:pt-3 pb-1.5 sm:pb-2 px-2 sm:px-4 md:px-8 border-b border-[#1aff80]/30 select-none">
       {/* Top Header Bar with Tabs & Model Badge */}
       <div className="flex justify-between items-center relative">
         {/* Left main tabs */}
-        <nav aria-label="Pip-Boy Main Categories" className="flex items-center gap-4 sm:gap-8 md:gap-10 relative z-10" role="tablist">
+        <nav aria-label="Pip-Boy Main Categories" className="flex items-center justify-between w-full gap-1 sm:w-auto sm:justify-start sm:gap-8 md:gap-10 relative z-10" role="tablist">
           {MAIN_TABS.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -61,7 +61,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                 aria-controls="main-pipboy-screen"
                 aria-label={`Switch to ${tab.label} category`}
                 onClick={() => handleTabClick(tab.id)}
-                className={`relative px-1 py-1 text-sm sm:text-base md:text-lg tracking-widest font-bold transition-all cursor-pointer ${
+                className={`relative px-0.5 sm:px-1 py-0.5 sm:py-1 text-xs sm:text-base md:text-lg tracking-[0.12em] sm:tracking-widest font-bold transition-all cursor-pointer ${
                   isActive
                     ? 'text-[#50ff9c] filter drop-shadow-[0_0_8px_rgba(26,255,128,0.9)]'
                     : 'text-[#1aff80]/60 hover:text-[#1aff80]'
@@ -88,10 +88,10 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
       </div>
 
       {/* The Continuous Glowing Horizontal Pip-Boy Line */}
-      <div className="relative w-full h-[1.5px] bg-[#1aff80]/30 mt-2 mb-2.5" />
+      <div className="relative w-full h-px bg-[#1aff80]/30 mt-1 sm:mt-2 mb-1.5 sm:mb-2.5" />
 
       {/* Sub-Tabs Row */}
-      <nav aria-label="Sub-category navigation" role="tablist" className="flex items-center gap-4 sm:gap-8 text-xs sm:text-sm tracking-wider mt-0.5 overflow-x-auto">
+      <nav aria-label="Sub-category navigation" role="tablist" className="flex items-center gap-3 sm:gap-8 text-[10px] sm:text-sm tracking-wider mt-0.5 overflow-x-auto">
         {activeTab === 'STAT' && (
           <>
             {(['STATUS', 'SPECIAL', 'PERKS'] as StatSubTab[]).map((sub) => {
@@ -199,6 +199,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             PIP-BOY FREQUENCY TUNER // BROADCAST CHANNELS
           </div>
         )}
+
       </nav>
     </header>
   );

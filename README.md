@@ -18,3 +18,7 @@ View your app in AI Studio: https://ai.studio/apps/e8549355-82d2-44ae-8865-5d412
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## SEO and GEO
+
+See the [SEO/GEO runbook](docs/SEO-GEO.md) for metadata updates, generated routes, validation, deployment checks, and search-engine submission.

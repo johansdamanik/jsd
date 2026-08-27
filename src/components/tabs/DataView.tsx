@@ -7,10 +7,13 @@ import { CheckSquare, Square, ExternalLink, Github, Award, MapPin, Calendar, Ter
 
 interface DataViewProps {
   subTab: DataSubTab;
+  initialQuestSlug?: string;
 }
 
-export const DataView: React.FC<DataViewProps> = ({ subTab }) => {
-  const [selectedQuestId, setSelectedQuestId] = useState<string>(QUESTS_DATA[0].id);
+export const DataView: React.FC<DataViewProps> = ({ subTab, initialQuestSlug }) => {
+  const [selectedQuestId, setSelectedQuestId] = useState<string>(() =>
+    QUESTS_DATA.find(({ slug }) => slug === initialQuestSlug)?.id ?? QUESTS_DATA[0].id,
+  );
   const [selectedEduId, setSelectedEduId] = useState<string>(EDUCATION_DATA[0].id);
   const [filterType, setFilterType] = useState<'ALL' | 'MAIN' | 'SIDE'>('ALL');
   const [mobileQuestModalOpen, setMobileQuestModalOpen] = useState(false);
@@ -267,9 +270,16 @@ export const DataView: React.FC<DataViewProps> = ({ subTab }) => {
                 </div>
               </div>
 
-              {/* Action buttons (Demo URL / GitHub) */}
-              {(selectedQuest.demoUrl || selectedQuest.githubUrl) && (
-                <div className="mt-4 pt-3 border-t border-[#1aff80]/20 flex flex-wrap gap-3 justify-end">
+              {/* Project and external links */}
+              <div className="mt-4 pt-3 border-t border-[#1aff80]/20 flex flex-wrap gap-3 justify-end">
+                  <a
+                    href={`/projects/${selectedQuest.slug}/`}
+                    aria-label={`View case study for ${selectedQuest.title}`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#1aff80] bg-[#1aff80] text-black font-bold text-xs tracking-wider hover:bg-white transition-colors"
+                  >
+                    <FolderGit2 className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>VIEW CASE STUDY</span>
+                  </a>
                   {selectedQuest.githubUrl && (
                     <a
                       href={selectedQuest.githubUrl}
@@ -296,8 +306,7 @@ export const DataView: React.FC<DataViewProps> = ({ subTab }) => {
                       <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                     </a>
                   )}
-                </div>
-              )}
+              </div>
             </div>
           </motion.div>
         )}
@@ -552,9 +561,16 @@ export const DataView: React.FC<DataViewProps> = ({ subTab }) => {
                   </div>
                 </div>
 
-                {/* Links */}
-                {(selectedQuest.demoUrl || selectedQuest.githubUrl) && (
-                  <div className="pt-2 flex flex-col gap-2">
+                {/* Project and external links */}
+                <div className="pt-2 flex flex-col gap-2">
+                    <a
+                      href={`/projects/${selectedQuest.slug}/`}
+                      aria-label={`View case study for ${selectedQuest.title}`}
+                      className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#1aff80] text-black font-bold text-xs tracking-wider hover:bg-white transition-colors"
+                    >
+                      <FolderGit2 className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span>VIEW CASE STUDY</span>
+                    </a>
                     {selectedQuest.demoUrl && (
                       <a
                         href={selectedQuest.demoUrl}
@@ -581,8 +597,7 @@ export const DataView: React.FC<DataViewProps> = ({ subTab }) => {
                         <span>INSPECT SOURCE CODE</span>
                       </a>
                     )}
-                  </div>
-                )}
+                </div>
               </div>
 
               {/* Footer */}

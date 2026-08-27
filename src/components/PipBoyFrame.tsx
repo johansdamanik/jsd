@@ -127,7 +127,7 @@ export const PipBoyFrame: React.FC<PipBoyFrameProps> = ({
           </div>
 
           <div className="flex items-center gap-3">
-            <h1 className="sr-only">Johan Simeon Damanik — Full-Stack Developer Portfolio</h1>
+            <h1 className="sr-only">Johan Simeon Damanik — Full-Stack Developer</h1>
             <button
               id="cycle-theme-top-btn"
               onClick={cycleTheme}

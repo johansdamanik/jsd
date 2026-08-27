@@ -8,7 +8,7 @@ export const PROFILE = {
   email: 'johansdamanik@gmail.com',
   github: 'https://github.com',
   linkedin: 'https://linkedin.com',
-  website: 'https://johansimeon.dev',
+  website: 'https://simeon.id',
   resumeUrl: 'https://simeon.id/cv-johan-simeon-damanik.pdf',
   vaultNumber: '111',
   level: 28,

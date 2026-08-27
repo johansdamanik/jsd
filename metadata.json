@@ -1,6 +1,6 @@
 {
-  "name": "Pip-Boy 3000 Mk IV Developer Portfolio",
-  "description": "Fallout Pip-Boy 3000 themed developer portfolio for Johan Simeon Damanik featuring CRT green phosphor aesthetics, typewriter boot sequence, S.P.E.C.I.A.L. skills, Perks certifications, and Quest log experience.",
+  "name": "Pip-Boy 3000 Mk IV Developer Experience",
+  "description": "Fallout Pip-Boy 3000 themed developer experience for Johan Simeon Damanik featuring CRT green phosphor aesthetics, typewriter boot sequence, S.P.E.C.I.A.L. skills, Perks certifications, and Quest log experience.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

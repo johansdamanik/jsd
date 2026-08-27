@@ -1,6 +1,6 @@
 # SEO/GEO Runbook
 
-SEO covers search engines; GEO covers discovery and citation by generative search systems. The production build generates crawlable static pages while the Pip-Boy React interface remains the homepage experience.
+SEO covers search engines; GEO covers discovery and citation by generative search systems. The production build keeps the Pip-Boy React interface on `/` and `/projects/`, while About and project case-study routes remain crawlable static pages.
 
 ## Source of truth
 
@@ -24,7 +24,7 @@ npm run preview
 - `seo:check` validates source data and checks tracked public SEO files for drift.
 - `build` runs Vite, generates the static SEO/GEO pages in ignored `dist/`, and verifies the generated output.
 - `preview` serves `dist/`; inspect this server when checking production routes and metadata.
-- The Vite development fallback opens `/projects/` at `DATA / QUESTS` and `/projects/{known-slug}/` with that quest selected. Production uses the generated static pages, and all navigation remains normal crawlable links.
+- The Vite development fallback and production `/projects/` route open at `DATA / QUESTS`; `/projects/{known-slug}/` opens that quest in development and remains a static case study in production. All navigation remains normal crawlable links.
 
 Generated indexable routes:
 

@@ -215,7 +215,7 @@ export const QUESTS_DATA: Quest[] = [
       'Seamless cross-border customs and documentation processing pipeline.',
     ],
     techStack: ['Next.js', 'React', 'TypeScript', 'Nuxt.js', 'Vue.js', 'Prisma ORM', 'MySQL', 'Firebase', 'Xendit', 'PayPal API'],
-    demoUrl: 'https://plantex.id',
+    demoUrl: 'https://plantex.co.id',
     xpReward: 3000,
   },
   {

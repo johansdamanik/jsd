@@ -432,9 +432,12 @@ function aboutPage(): string {
   });
 }
 
-function projectsPage(): string {
+const PROJECTS_TITLE = `Projects | ${SITE_CONFIG.identity.name}, Full-Stack Developer`;
+const PROJECTS_DESCRIPTION = 'Full-stack project case studies covering ERP, commerce, POS, logistics, productivity, community platforms, and broadcast automation.';
+
+function projectsSchema(): JsonLd {
   const projectsUrl = absoluteUrl('/projects/');
-  const schema = {
+  return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     '@id': `${projectsUrl}#webpage`,
@@ -452,29 +455,32 @@ function projectsPage(): string {
     },
     inLanguage: SITE_CONFIG.language,
   };
-  const cards = QUESTS_DATA.map((quest) => `
-    <article class="quest-card">
-      <div class="quest-meta"><span>${escapeHtml(quest.type)}</span><span>${escapeHtml(quest.status)}</span></div>
-      <h2><a href="${projectRoute(quest)}">${escapeHtml(quest.title)}</a></h2>
-      <p>${escapeHtml(quest.caseStudySummary)}</p>
-      <p class="tags">${quest.techStack.slice(0, 7).map((tech) => `<span>${escapeHtml(tech)}</span>`).join('')}</p>
-      <a class="text-link" href="${projectRoute(quest)}">OPEN CASE STUDY →</a>
-    </article>`).join('');
+}
 
-  return staticPage({
-    title: `Projects | ${SITE_CONFIG.identity.name}, Full-Stack Developer`,
-    description: 'Full-stack project case studies covering ERP, commerce, POS, logistics, productivity, community platforms, and broadcast automation.',
-    canonicalPath: '/projects/',
-    eyebrow: 'QUEST LOG // DEPLOYED SYSTEMS',
-    schema,
-    body: `
-      <header class="hero">
-        <p class="status">${QUESTS_DATA.length} MISSION FILES FOUND</p>
-        <h1>PROJECT CASE STUDIES</h1>
-        <p class="lead">Selected systems engineered by ${escapeHtml(SITE_CONFIG.identity.name)}.</p>
-      </header>
-      <section class="project-list" aria-label="Project case studies">${cards}</section>`,
-  });
+async function interactiveProjectsPage(): Promise<string> {
+  let html = await readFile(path.join(DIST_DIR, 'index.html'), 'utf8');
+  const projectsUrl = absoluteUrl('/projects/');
+  html = replaceExactlyOnce(html, /<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(PROJECTS_TITLE)}</title>`, 'projects title');
+  html = replaceMeta(html, 'name', 'title', PROJECTS_TITLE);
+  html = replaceMeta(html, 'name', 'description', PROJECTS_DESCRIPTION);
+  html = replaceMeta(html, 'property', 'og:url', projectsUrl);
+  html = replaceMeta(html, 'property', 'og:title', PROJECTS_TITLE);
+  html = replaceMeta(html, 'property', 'og:description', PROJECTS_DESCRIPTION);
+  html = replaceMeta(html, 'name', 'twitter:url', projectsUrl);
+  html = replaceMeta(html, 'name', 'twitter:title', PROJECTS_TITLE);
+  html = replaceMeta(html, 'name', 'twitter:description', PROJECTS_DESCRIPTION);
+  html = replaceExactlyOnce(
+    html,
+    /<link\s+rel="canonical"\s+href="[^"]*"\s*\/>/i,
+    `<link rel="canonical" href="${projectsUrl}" />`,
+    'projects canonical link',
+  );
+  return replaceExactlyOnce(
+    html,
+    /<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/i,
+    `<script type="application/ld+json">\n${jsonLd(projectsSchema())}\n    </script>`,
+    'projects JSON-LD script',
+  );
 }
 
 function projectSchema(quest: Quest): JsonLd {
@@ -932,7 +938,7 @@ async function generate(): Promise<void> {
   await access(path.join(DIST_DIR, 'index.html'));
   await postProcessHomepage();
   await writeRoute('/about/', aboutPage());
-  await writeRoute('/projects/', projectsPage());
+  await writeRoute('/projects/', await interactiveProjectsPage());
   await Promise.all(QUESTS_DATA.map((quest) => writeRoute(projectRoute(quest), projectPage(quest))));
   await writeFile(path.join(DIST_DIR, '404.html'), notFoundPage());
   await Promise.all(Object.entries(generatedPublicFiles()).map(([file, content]) => writeFile(path.join(DIST_DIR, file), content)));

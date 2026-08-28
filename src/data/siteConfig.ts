@@ -37,11 +37,11 @@ export const SITE_CONFIG = {
     github: 'https://github.com/johansdamanik',
   },
   seo: {
-    homeTitle: 'Johan Simeon Damanik | Full-Stack Developer in Jakarta',
-    homeDescription: 'Jakarta-based Full-Stack Developer building scalable ERP, POS, commerce, payment, and API systems with TypeScript, Vue, React, Node.js, and Laravel.',
+    homeTitle: 'Johan Simeon Damanik | Full-Stack Developer',
+    homeDescription: 'Full-Stack Developer in Jakarta building scalable web products, ERP/POS systems, business platforms, and automation tools with modern JavaScript and backend technologies.',
     ogImagePath: '/og-image.png',
     ogImageWidth: 1200,
     ogImageHeight: 630,
-    lastModified: '2026-08-27',
+    lastModified: '2026-08-28',
   },
 } as const;

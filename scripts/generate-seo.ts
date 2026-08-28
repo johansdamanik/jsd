@@ -61,6 +61,10 @@ function absoluteUrl(route: string): string {
   return new URL(route, `${SITE_CONFIG.domain}/`).toString();
 }
 
+function isoDateTime(date: string): string {
+  return `${date}T00:00:00+07:00`;
+}
+
 function projectRoute(quest: Quest): string {
   return `/projects/${quest.slug}/`;
 }
@@ -247,7 +251,7 @@ function homeSchema(): JsonLd {
         url: HOME_URL,
         name: SITE_CONFIG.seo.homeTitle,
         description: SITE_CONFIG.seo.homeDescription,
-        dateModified: SITE_CONFIG.seo.lastModified,
+        dateModified: isoDateTime(SITE_CONFIG.seo.lastModified),
         isPartOf: { '@id': `${SITE_CONFIG.domain}/#website` },
         about: { '@id': `${SITE_CONFIG.domain}/#person` },
         mainEntity: { '@id': `${SITE_CONFIG.domain}/#person` },
@@ -517,7 +521,7 @@ function projectSchema(quest: Quest): JsonLd {
     description: quest.seoDescription,
     abstract: quest.caseStudySummary,
     image: absoluteUrl(quest.imagePath),
-    dateModified: quest.dateModified,
+    dateModified: isoDateTime(quest.dateModified),
     author: { '@id': `${SITE_CONFIG.domain}/#person` },
     creator: { '@id': `${SITE_CONFIG.domain}/#person` },
     about: quest.techStack,
